@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "cos-similarity": "./cos-similarity.js",
+    "react": "./react.js",
+    "react-dom": "./react-dom.js",
+    "usehooks-ts": "./usehooks-ts.js"
+  }
+}
