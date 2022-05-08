@@ -11,3 +11,133 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.searchInput {
+	border: 0.1rem solid gray;
+	border-radius: 0.3rem;
+	padding: 0.1rem;
+	width: 40%;
+	height: 1.3rem;
+}
+.searchName{
+	margin: 0.1rem;
+}
+
+.search {
+		appearance: none;
+		border: 0;
+		border-radius: 5px;
+		background: gray;
+		color: #fff;
+		margin: 10px;
+		padding: 0.3rem 0.4rem;
+		font-size: 15px;
+		text-align: right;
+}
+
+.sets {
+	white-space: pre-wrap;
+	text-align: left;
+	margin: 1.5rem;
+	padding: 2rem, 2rem;
+	border-radius: 0.5rem;
+	border: solid gray;
+	line-height: 1.35rem;
+}
+
+
+.set{
+	margin: 1.2rem;
+}
+
+
+.slide {
+	margin-left: 1rem;
+	padding: 0.2rem;
+	padding-right: 1rem;
+	font-size: 0.8rem;
+}
+
+.title {
+	text-align: left;
+	font-size: 0.6rem;
+	color: black;
+	text-decoration: underline
+	background-clip: padding-box;
+	background-color: rgba(0, 0, 0, .03);
+	border-bottom: 1px solid;
+	border-bottom-color: #dc3545;
+}
+
+.title2 {
+	text-align: left;
+	font-size: 1rem;
+	color: black;
+	text-decoration: underline background-clip: padding-box;
+	background-color: rgba(0, 0, 0, .03);
+	border-bottom: 1px solid;
+	border-bottom-color: #dc3545;
+}
+
+.end{
+	height: 1px;
+	border-color:white #dc3545;
+}
+
+ol {
+	padding: 1rem;
+}
+
+.searchModal {
+	padding: 2rem;
+	margin: 2rem;
+}
+
+.explain {
+	margin: 1rem;
+	padding: 1rem;
+	font-size: 0.8rem;
+}
+
+img {
+	width: 15rem;
+	margin: 1rem;
+
+}
+
+.picParent{
+	text-align: center;
+}
+
+.button {
+	appearance: none;
+	border: 0;
+	border-radius: 0.4rem;
+	background: #4676D7;
+	color: #fff;
+	padding: 8px 16px;
+	font-size: 20px;
+}
+
+/* .motion {
+	white-space: pre-wrap;
+	text-align: left;
+	margin: 1rem;
+	padding: 1rem;
+	border-radius: 0.6rem;
+	border: solid orange;
+	line-height: 1.35rem;
+	/* font-size: 1.1rem; */
+	/* text-decoration: underline; */
+	/* text-decoration-color: gainsboro;
+} */
+
+.motion2 {
+	margin: 0.5rem 0rem;
+}
+
+.copy {
+	margin: 1.1rem;
+	padding: 0.3rem;
+}
+
