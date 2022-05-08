@@ -1,19 +1,17 @@
-//
-// import { useCopyToClipboard } from 'usehooks-ts';
 import cosSimilarity from "cos-similarity";
 import React, { useState } from 'react';
 import { useCopyToClipboard } from 'usehooks-ts';
 import './App.css';
-import allVectors from "./data/allVectors.json";
 import copyJson from "./data/copy.json";
 import datastructure from "./data/datastructure.json";
 import datastructureSimple from "./data/datastructure_simple.json";
+import allVectors from "./data/round.json";
 import pic from "./utdslogo.png";
+
+let t = "Peace is a journey of a thousand miles and it must be taken one step at a time.";
 
 let nationalHistory = new Array();
 let internationalHistory = new Array();
-
-// console.log(datastructure["national"][0]["rounds"]);
 export function Slide(props) {
 	if (props.flag)
 	return (
@@ -23,27 +21,17 @@ export function Slide(props) {
 		return (<></>);
 	}
 }
-// export function Slide2(props) {
-// 	if (props.flag)
-// 	return (
-// 		<div className="slide">{props.flag}</div>
-// 	)
-// 	else {
-// 		return (<></>);
-// 	}
-// }
-
 export function NationalModal(props) {
 	let json_dict = datastructure["national"][props.index]
-if (props.flag){
+if (true){
 return (
-		<ol className="sets" key={props.index}>{
+		<div className="sets" key={props.index}>
+		<div className="titles">{json_dict.title}</div>
+			{
 			Object.values(json_dict.rounds).map((e) => {
 			return (
-				// <div>{e.motion}</div>
-
 					<>
-						<li className="set">
+						<div className="set">
 							<div className="parant">
 								<div className="child1">
 								<div className="title2">
@@ -59,35 +47,70 @@ return (
 									<Slide flag={e.slide} />
 								</div>
 							</div>
-						</li>
+						</div>
 					</>
 					);
 				}
 			)
 		}
-		</ol>
+		</div>
 	);}
 	else {
 		return (<></>);
 	}
-
+}
+export function InternationalModal(props) {
+	let json_dict = datastructure["international"][props.index]
+if (true){
+return (
+		<div className="sets" key={props.index}>
+		<div className="titles">{json_dict.title}</div>
+			{
+			Object.values(json_dict.rounds).map((e) => {
+			return (
+					<>
+						<div className="set">
+							<div className="parant">
+								<div className="child1">
+								<div className="title2">
+									{
+									e.round
+									}
+								</div>
+									<div className="motion2">
+										{
+										e.motion
+										}
+									</div>
+									<Slide flag={e.slide} />
+								</div>
+							</div>
+						</div>
+					</>
+					);
+				}
+			)
+		}
+		</div>
+	);}
+	else {
+		return (<></>);
+	}
 }
 
-
-
 export function SearchModal(props) {
-	if (true) {
+	if (props.isClicked) {
 		return (
-		<ol className="sets">{
+		<div className="sets">{
 			props.ranks.map((e) => {
 			return (
 		<>
-			<li className="set">
+			<div className="set">
 				<div className="parant">
 					<div className="child1">
 					<div className="title">
 						{
-						datastructureSimple.data.find((v) => v.id==e).title + " " + datastructureSimple.data.find((v) => v.id==e).round
+						datastructureSimple.data.find((v) => v.id==e).title + " / " + datastructureSimple.data.find((v) => v.id==e).round
 						}
 					</div>
 						<div className="motion">
@@ -98,12 +121,12 @@ export function SearchModal(props) {
 						<Slide flag={datastructureSimple.data.find((v) => v.id==e).slide} />
 					</div>
 				</div>
-			</li>
+			</div>
 		</>
 			);}
 			)
 		}
-		</ol>
+		</div>
 		);
 	} else {
 		return (<></>);
@@ -112,105 +135,110 @@ export function SearchModal(props) {
 
 interface AppProps {}
 function App({}: AppProps) {
+	// let t = "World-peace can be achieved when the power of love replaces the love of power"
 
-	const [text, setText] = useState("search engine");
+	const [text, setText] = useState(t);
 	const [ranks, setRanks] = useState<Array<number>>([]);
-	// const [close, setClose] = useState(false);
 	const [isClicked, setIsClicked] = useState(false);
 	const [nationalIndex, setNationalIndex] = useState(0);
-	const [internationalIndex, setInternationalIndex] = useState(6000);
+	const [internationalIndex, setInternationalIndex] = useState(0);
 	const [value, copy] = useCopyToClipboard()
 	const [nationalIsClicked, setNationalIsClicked] = useState(true);
 	const [internationalIsClicked, setInternationalIsClicked] = useState(true);
+	const [isWaiting, setIsWaiting] = useState(false);
 
 	function text2embed() {
+		if (true) {
 		use.load().then(model => {
-		// Embed an array of sentences.
-			const sentences = [
-				text
-			];
-			// console.log(text);
+			const sentences = [text];
 			model.embed(sentences).then(async embeddings => {
-			embeddings.print(true /* verbose */);
+			embeddings.print(true);
 			let vec = await embeddings.array();
-			// vec, allVectors　との間でranking
 			let similarities = {}
 			let similarity = -1;
-			// console.log(allVectors[0]);
-			// console.log(allVectors.length);
 			let length = allVectors.length;
-
-			for (let i = 0; i<length; i++){
-				// console.log(vec)
-				// console.log(allVectors[i]);
+			for (let i = 0; i<length; i++) {
 				let vecs = allVectors[i];
 				similarity = cosSimilarity(vec[0], vecs);
-				// similarity = cosSimilarity([1, 2, 3], [2, 3, 4]);
-///////////////////////
-				// console.log(similarity);
-				similarities[i] = similarity;
-			}
-
+				similarities[i] = similarity;}
 			let arr = similarities;
 			var keys=[];
 			for(let key in arr) keys.push(key);
-			function compare(a, b){
-				return arr[b] - arr[a];
-			}
+				function compare(a, b) {
+				return arr[b] - arr[a];}
 			let result = [];
 			keys.sort(compare);
-			for(let i=0; i<100; i++){
-				result.push(keys[i]);
-			}
+			for(let i=0; i<	10; i++){
+				result.push(keys[i]); }
 			setRanks(result);
 			});
 		});
-	}
-
+	}}
 
 	function handleClick() {
-		text2embed();
+		setIsWaiting(true)
 		setIsClicked(!isClicked);
-	}
+		text2embed();
+		setIsWaiting(false);
+		}
+
 
 	function handleNationalClick() {
 		setNationalIndex(Math.floor(Math.random()*datastructure["national"].length));
 		nationalHistory.push(nationalIndex);
 		setNationalIsClicked(!nationalIsClicked);
 	}
-	function handleInterNationalClick() {
+	function handleInternationalClick() {
 		setInternationalIndex(Math.floor(Math.random()*datastructure["international"].length));
 		internationalHistory.push(internationalIndex);
+		setInternationalIsClicked(!internationalIsClicked);
 	}
 
+	function handleNationalBackwardClick() {
+		setNationalIndex(nationalHistory.pop());
+	}
+
+	function handleInternationalBackwardClick() {
+		setInternationalIndex(internationalHistory.pop());
+	}
 
 
   return (
 	<div className="App">
 		<div className="picParent"><img src={pic} alt="picture"/></div>
-		<input className="searchInput" type="text" onChange = {(e) => {setText(e.target.value)}} value={text} />
-		<button className="search" onClick={ handleClick }>similarity</button>
-		{/* {ranks.map((e) => {return (<div>{e}</div>); })} */}
+			<div className="parent-input-button">
+				<input className="searchInput" type="text" onChange = {(e) => {setText(e.target.value)}} value={text} />
+				<button className="search" onClick={ handleClick } disabled={ isWaiting }>search</button>
+			</div>
 		<div className="searchName">{ text }</div>
 
-		{/* <CloseModal className="closeModal" isClicked={isClicked} */}
+
 		<SearchModal className="searchModal" isClicked={isClicked} ranks={ranks}  />
 
 
-{/* random motion */}
+		<br></br>
 		<br></br>
 		<br></br>
 
-
-		{/* <button className="backward" onClick = {handleNationalBackwardClick}>戻る</button> */}
-        <button className="button" onClick={() => {handleNationalClick(); setNationalIsClicked();}}>national motion</button>
+		<button className="backward" onClick = {handleNationalBackwardClick}>戻る</button>
+        <button className="button" onClick={() => {handleNationalClick();}}>national motion</button>
         <button className="copy" onClick={() => copy(copyJson[nationalIndex])}>Copy</button>
-        <div className="motion">{nationalIndex}</div>
-		{/* <div className="nationalTitle">{datastructure[nationalIndex]["rounds"]["title"]}</div> */}
-		<NationalModal className="nationalModal" index={nationalIndex} flag={nationalIsClicked} />
+
+		<NationalModal className="nationalModal" index={nationalIndex} flag={nationalIsClicked} type={"national"} />
+        <div className="index">{nationalIndex}/{datastructure["national"].length}</div>
+
+		<button className="backward" onClick = {handleInternationalBackwardClick}>戻る</button>
+        <button className="button" onClick={() => {handleInternationalClick();}}>international motion</button>
+        <button className="copy" onClick={() => copy(copyJson[internationalIndex + datastructure["national"].length - 1])}>Copy</button>
+
+		<InternationalModal className="internationalModal" index={internationalIndex} flag={internationalIsClicked} type={"international"} />
+        <div className="index">{internationalIndex}/{datastructure["international"].length}</div>
 
 
-	<p className="explain">motion search engine using sentence bert embedding</p> <br></br> <p> The University of Tokyo, Debating Society. </p>
+	<p className="explain">motion search engine created by utds member by using sentence bert embedding</p>
+	<p> The University of Tokyo, Debating Society. UTDS</p>
+	<p>motions are gathered from utds website http://resources.tokyodebate.org/debate-motion/motion/</p>
+	<br></br>
 	</div>
 	);
 }
