@@ -214,17 +214,17 @@ function App({}: AppProps) {
 		<div className="picParent"><img src={pic} alt="picture"/></div>
 
 	<div className="flex">
-		<button className="backward" onClick = {handleNationalBackwardClick}>↩️</button>
+		<button className="backward" onClick = {handleNationalBackwardClick}>back</button>
         <button className="button" onClick={() => {handleNationalClick();}}>national motion</button>
-        <button className="copy" onClick={() => copy(copyJson[nationalIndex])}>Copy</button>
+        <button className="copy" onClick={() => copy(copyJson[nationalIndex])}>copy</button>
 	</div>
 		<NationalModal className="nationalModal" index={nationalIndex} flag={nationalIsClicked} type={"national"} />
         {/* <div className="index">{nationalIndex}/{datastructure["national"].length}</div> */}
 
 	<div className="flex">
-		<button className="backward" onClick = {handleInternationalBackwardClick}>↩️</button>
+		<button className="backward" onClick = {handleInternationalBackwardClick}>back</button>
         <button className="button" onClick={() => {handleInternationalClick();}}>international motion</button>
-        <button className="copy" onClick={() => copy(copyJson[internationalIndex + datastructure["national"].length - 1])}>Copy</button>
+        <button className="copy" onClick={() => copy(copyJson[internationalIndex + datastructure["national"].length - 1])}>copy</button>
 	</div>
 		<InternationalModal className="internationalModal" index={internationalIndex} flag={internationalIsClicked} type={"international"} />
         {/* <div className="index">{internationalIndex}/{datastructure["international"].length}</div> */}
