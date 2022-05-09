@@ -22,6 +22,14 @@ export function Slide(props) {
 	}
 }
 export function NationalModal(props) {
+	// const [loading, setLoading] = useState(true);
+	// useEffect(() => {
+	// 	setTimeout(() => {
+	// 	setLoading(false);
+	// 	}, 2000);
+	// }, []);
+	// if (loading) {return (<div>{loading ? "loading...":<></>}</div>); }
+
 	let json_dict = datastructure["national"][props.index]
 if (true){
 return (
@@ -53,7 +61,11 @@ return (
 				}
 			)
 		}
-		<div className="index">{props.index}/{datastructure["national"].length}</div>
+
+		<div className="index-close">
+			<div className="index">{props.index}/{datastructure["national"].length}</div>
+			{/* <button className="close" onClick = {() => {}}>↑</button> */}
+		</div>
 		</div>
 	);}
 	else {
@@ -92,7 +104,10 @@ return (
 				}
 			)
 		}
-		<div className="index">{props.index}/{datastructure["international"].length}</div>
+		<div className="index-close">
+			<div className="index">{props.index}/{datastructure["international"].length}</div>
+			{/* <button className="close">↑</button> */}
+		</div>
 
 		</div>
 	);}
@@ -103,7 +118,7 @@ return (
 
 export function SearchModal(props) {
 	// if (isClicked){
-	if (true) {
+	if (props.started) {
 		return (
 		<div className="sets">{
 			props.ranks.map((e) => {
@@ -154,11 +169,22 @@ function App({}: AppProps) {
 	const [Length, setLLength] = useState(10);
 	const [isSearch, setIsSearch] = useState(false);
 
+	const [loading, setLoading] = useState(false);
+	const [started, setStarted] = useState(false);
+
+	// useEffect(() => {
+	// 	setTimeout(() => {
+	// 	setLoading(false);}, 2000);
+	// 	}, []);
+
+	if (loading) {return (<div>{loading ? "loading...":<></>}</div>); }
+
 	function text2embed() {
 		if (true) {
 		use.load().then(model => {
 			const sentences = [text];
 			model.embed(sentences).then(async embeddings => {
+			setLoading(true);
 			embeddings.print(true);
 			let vec = await embeddings.array();
 			let similarities = {}
@@ -178,6 +204,9 @@ function App({}: AppProps) {
 			for(let i=0; i<	l; i++){
 				result.push(keys[i]); }
 			setRanks(result);
+
+			setLoading(false);
+
 			});
 		});
 	}}
@@ -210,10 +239,32 @@ function App({}: AppProps) {
 		setInternationalIndex(internationalHistory.pop());
 	}
 
-
   return (
 	<div className="App">
 		<div className="picParent"><img src={pic} alt="picture"/></div>
+<br></br>
+		<div className="parent-input-button">
+			<input className="searchInput" type="text" onChange = {(e) => {setText(e.target.value);}} value={text} />
+			<button className="search" onClick={ (e) => {handleClick(); e.target.style.backgroundColor="skyblue"; setStarted(true); }} disabled={ isWaiting }>search</button>
+		</div>
+
+		{/* <div className="seperator"></div> */}
+
+		<div className="searchName">{ text }</div>
+		<SearchModal className="searchModal" isClicked={isClicked} ranks={ranks} started = {started} />
+
+		{/* <div>{ (true) ?
+		<div className="length-explain">
+			<input className="length" type="text" placeholder="10" onChange={e => setL(Number(e.target.value))} value={l} />
+			<div className="explain">similar motions are searched</div>
+		</div> : <div className="length-explain">
+			<input className="length" type="text" placeholder="10" onChange={e => setL(Number(e.target.value))} value={l} />
+		</div>
+		} </div> */}
+
+		<br></br>
+		<div className="seperator"></div>
+		{/* <div className="seperator2"></div> */}
 
 	<div className="flex">
 		<button className="backward" onClick = {handleNationalBackwardClick}>back</button>
@@ -222,6 +273,8 @@ function App({}: AppProps) {
 	</div>
 		<NationalModal className="nationalModal" index={nationalIndex} flag={nationalIsClicked} type={"national"} />
         {/* <div className="index">{nationalIndex}/{datastructure["national"].length}</div> */}
+		{/* <button className="close" onClick = {() => {}}>close</button> */}
+		<br></br>
 
 	<div className="flex">
 		<button className="backward" onClick = {handleInternationalBackwardClick}>back</button>
@@ -230,20 +283,19 @@ function App({}: AppProps) {
 	</div>
 		<InternationalModal className="internationalModal" index={internationalIndex} flag={internationalIsClicked} type={"international"} />
         {/* <div className="index">{internationalIndex}/{datastructure["international"].length}</div> */}
+		{/* <button className="close" onClick = {() => {}}>close</button> */}
 
 
-		<div className="parent-input-button">
-			<input className="searchInput" type="text" onChange = {(e) => {setText(e.target.value)}} value={text} />
-			<button className="search" onClick={ handleClick } disabled={ isWaiting }>search</button>
-		</div>
-		<div className="searchName">{ text }</div>
-		<SearchModal className="searchModal" isClicked={isClicked} ranks={ranks}  />
-		<div>{ isClicked && !isWaiting ? <input className="length" type="text" placeholder="10" onChange={e => setL(Number(e.target.value))} value={l} /> : <></>} </div>
+		<br></br>
+		<br></br>
 
 
-	<p className="explain">motion search engine created by utds member by using sentence bert embedding</p>
+
+	<br></br>
+	{/* <p className="explain"></p> */}
+	<a href="http://resources.tokyodebate.org/debate-motion/motion/" className="explain">utds motion</a>
+	<br></br>
 	<p> The University of Tokyo, Debating Society. UTDS</p>
-	<p>motions are gathered from utds website http://resources.tokyodebate.org/debate-motion/motion/</p>
 	<br></br>
 	</div>
 	);

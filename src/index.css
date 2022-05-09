@@ -19,7 +19,10 @@ code {
 	margin: 0.25rem;
 	padding: 0.1rem;
 	width: 50%;
-	height: 1.3rem;
+	height: 1.8rem;
+	/* background: whitesmoke; */
+	margin-left: 3rem;
+	/* border-color: #1cbbd0; */
 }
 
 .searchName{
@@ -31,7 +34,8 @@ code {
 	text-decoration: underline background-clip: padding-box;
 	background-color: rgba(0, 0, 0, .03);
 	border-bottom: 1px solid;
-	border-bottom-color: skyblue;
+	/* border-bottom-color: skyblue; */
+	border-bottom-color: #1cbbd0;
 }
 
 .search {
@@ -49,11 +53,14 @@ code {
 .sets {
 	white-space: pre-wrap;
 	text-align: left;
-	margin: 1.5rem;
+	margin-top: 1.5rem;
+	margin-bottom: 0.2rem;
 	padding: 2rem, 2rem;
 	border-radius: 0.5rem;
 	border: solid gray;
 	line-height: 1.35rem;
+	margin-left:2rem;
+	margin-right: 2rem;
 }
 
 
@@ -77,7 +84,7 @@ code {
 	background-clip: padding-box;
 	background-color: rgba(0, 0, 0, .03);
 	border-bottom: 1px solid;
-	border-bottom-color: #dc3545;
+	border-bottom-color: #1cbbd0;
 }
 
 .title2 {
@@ -89,6 +96,31 @@ code {
 	border-bottom: 1px solid;
 	border-bottom-color: #dc3545;
 }
+
+/* .seperator {
+	/* height: 1rem; */
+	/* font-size: 0.9rem; */
+
+	text-decoration: underline background-clip: padding-box;
+
+	border-top: 5px solid;
+	border-bottom: 5px solid;
+	border-top-color: skyblue;
+	color: white;
+	border-bottom-color: #dc3545;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+} */
+
+.seperator2 {
+	height: 1rem;
+	/* font-size: 0.9rem; */
+	color: black;
+	text-decoration: underline background-clip: padding-box;
+	/* background-color: rgba(0, 0, 0, .01); */
+	border-bottom: 5px solid;
+	border-bottom-color: #dc3545;
+	margin-bottom: 1rem;}
 
 .end{
 	height: 1px;
@@ -105,8 +137,9 @@ ol {
 }
 
 .explain {
-	margin: 1rem;
-	padding: 1rem;
+	/* margin: 1rem; */
+	text-align: center;
+	padding: 0.5rem 0rem;;
 	font-size: 0.8rem;
 }
 
@@ -139,11 +172,7 @@ img {
 	margin: 0.5rem 0rem;
 }
 
-.index {
-	text-align: right;
-	margin: 0rem 2rem;
-	font-size: 0.8rem;
-}
+
 
 
 .titles {
@@ -160,9 +189,9 @@ img {
 .length {
 	text-align: center;
 	width: 1.4rem;
-	margin-left: 85%;
-	/* margin-top: 0.2rem; */
-	margin-bottom: 0.2rem;
+	margin-top: 0.1rem;
+	margin-left: 1rem;
+	margin-bottom: 0.1rem;
 }
 
 .flex{
@@ -175,6 +204,16 @@ img {
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-around;
+}
+
+.length-explain {
+	/* display: inline-block; */
+	/* justify-content: space-around;
+	margin: 1rem;
+	padding: 0.5% 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap; */
 }
 
 .flex>* {
@@ -220,3 +259,27 @@ img {
 	margin-top: 1.3rem;
 	margin-bottom: 1.3rem;
 }
+
+
+.index {
+	/* text-align: right; */
+	margin-right: 0%;
+	/* margin: 0rem 2rem; */
+	font-size: 0.6rem;
+	margin-bottom: 0.2rem;
+
+}
+
+/* .close {
+	font-size: 0.5rem;
+	padding: 0.1rem 0.1rem;
+	em 0.3rem;
+	margin-bottom: 0.4rem;
+	margin-left: 1rem;
+} */
+
+.index-close {
+	margin-left: 89%;
+}
+
+/*  write a css that put two div bottom right of parent div */
