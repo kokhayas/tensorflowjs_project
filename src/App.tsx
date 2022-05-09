@@ -102,7 +102,8 @@ return (
 }
 
 export function SearchModal(props) {
-	if (props.isClicked) {
+	// if (isClicked){
+	if (true) {
 		return (
 		<div className="sets">{
 			props.ranks.map((e) => {
@@ -151,6 +152,7 @@ function App({}: AppProps) {
 	const [isWaiting, setIsWaiting] = useState(false);
 	const [l, setL] = useState(10);
 	const [Length, setLLength] = useState(10);
+	const [isSearch, setIsSearch] = useState(false);
 
 	function text2embed() {
 		if (true) {
