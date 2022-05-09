@@ -16,6 +16,7 @@ code {
 	text-align: center;
 	border: 0.1rem solid gray;
 	border-radius: 0.3rem;
+	margin: 0.25rem;
 	padding: 0.1rem;
 	width: 50%;
 	height: 1.3rem;
@@ -40,8 +41,8 @@ code {
 		background: gray;
 		color: #fff;
 		margin-left: 1rem;
-		padding: 0.3rem 0.4rem;
-		font-size: 1rem;
+		padding: 0.3rem 0.7rem;
+		font-size: 1.2rem;
 		text-align: right;
 }
 
@@ -111,8 +112,7 @@ ol {
 
 img {
 	width: 13rem;
-	margin: 1rem;
-
+	margin-top: 1rem;
 }
 
 .picParent{
@@ -139,34 +139,12 @@ img {
 	margin: 0.5rem 0rem;
 }
 
-.copy {
-	margin: 1.1rem;
-	padding: 0.3rem;
-}
-
 .index {
 	text-align: right;
 	margin: 0rem 2rem;
 	font-size: 0.8rem;
 }
 
-.backward {
-	line-height: 1.2rem;
-	margin: 1.2rem;
-	margin-left: 2rem;
-	float: left;
-		/* margin-left: 2rem;
-		/* float: left;
-		margin-left: 3rem;
-		margin-right: 3rem;
-		padding: 0.3rem; */
-}
-
-.copy {
-	/* margin: 1rem; */
-	margin-left: 1.8rem;
-	padding: 0.3rem;
-}
 
 .titles {
 	text-align: center;
@@ -177,4 +155,67 @@ img {
 	justify-content: center;
 	display: flex;
 	flex-wrap: wrap;
+}
+
+.length {
+	text-align: center;
+	width: 1.4rem;
+	margin-left: 85%;
+	/* margin-top: 0.2rem; */
+	margin-bottom: 0.2rem;
+}
+
+.flex{
+	justify-content: space-between;
+}
+
+.flex {
+	padding: 0.5% 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.flex>* {
+	min-width: 3%;
+	text-align: center;
+}
+
+.backward {
+	/* margin-top: auto;
+	margin-bottom: auto; */
+	/* line-height: 1.2rem;
+	width: 1rem; */
+	/* margin: 1.2rem;
+	margin-right: 5rem; */
+	transform: scaleY(-1);
+	font-size: 1.2rem;
+	text-align: center;
+	margin-top: 1.3rem;
+	margin-bottom: 1.3rem;
+	/* max-height: 1.5rem; */
+}
+
+.button {
+	appearance: none;
+	border: 0;
+	border-radius: 0.4rem;
+	background: #4676D7;
+	color: #fff;
+	padding: 8px 15px;
+	font-size: 20px;
+	text-align: center;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.copy {
+	/* margin-left: 1.8rem;
+	margin-top: auto;
+	margin-bottom: auto; */
+	margin-bottom: 1.2rem;
+	padding: 0.3rem 0.25rem;
+	margin-top: 1.3rem;
+	margin-bottom: 1.3rem;
 }

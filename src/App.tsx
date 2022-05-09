@@ -53,6 +53,7 @@ return (
 				}
 			)
 		}
+		<div className="index">{props.index}/{datastructure["national"].length}</div>
 		</div>
 	);}
 	else {
@@ -91,6 +92,8 @@ return (
 				}
 			)
 		}
+		<div className="index">{props.index}/{datastructure["international"].length}</div>
+
 		</div>
 	);}
 	else {
@@ -146,6 +149,8 @@ function App({}: AppProps) {
 	const [nationalIsClicked, setNationalIsClicked] = useState(true);
 	const [internationalIsClicked, setInternationalIsClicked] = useState(true);
 	const [isWaiting, setIsWaiting] = useState(false);
+	const [l, setL] = useState(10);
+	const [Length, setLLength] = useState(10);
 
 	function text2embed() {
 		if (true) {
@@ -156,8 +161,7 @@ function App({}: AppProps) {
 			let vec = await embeddings.array();
 			let similarities = {}
 			let similarity = -1;
-			let length = allVectors.length;
-			for (let i = 0; i<length; i++) {
+			for (let i = 0; i<allVectors.length; i++) {
 				let vecs = allVectors[i];
 				similarity = cosSimilarity(vec[0], vecs);
 				similarities[i] = similarity;}
@@ -168,7 +172,8 @@ function App({}: AppProps) {
 				return arr[b] - arr[a];}
 			let result = [];
 			keys.sort(compare);
-			for(let i=0; i<	10; i++){
+			// ここのLengthを変える
+			for(let i=0; i<	l; i++){
 				result.push(keys[i]); }
 			setRanks(result);
 			});
@@ -176,6 +181,7 @@ function App({}: AppProps) {
 	}}
 
 	function handleClick() {
+		setLLength(l);
 		setIsWaiting(true)
 		setIsClicked(!isClicked);
 		text2embed();
@@ -206,33 +212,33 @@ function App({}: AppProps) {
   return (
 	<div className="App">
 		<div className="picParent"><img src={pic} alt="picture"/></div>
-			<div className="parent-input-button">
-				<input className="searchInput" type="text" onChange = {(e) => {setText(e.target.value)}} value={text} />
-				<button className="search" onClick={ handleClick } disabled={ isWaiting }>search</button>
-			</div>
-		<div className="searchName">{ text }</div>
 
-
-		<SearchModal className="searchModal" isClicked={isClicked} ranks={ranks}  />
-
-
-		<br></br>
-		<br></br>
-		<br></br>
-
-		<button className="backward" onClick = {handleNationalBackwardClick}>戻る</button>
+	<div className="flex">
+		<button className="backward" onClick = {handleNationalBackwardClick}>↩️</button>
         <button className="button" onClick={() => {handleNationalClick();}}>national motion</button>
         <button className="copy" onClick={() => copy(copyJson[nationalIndex])}>Copy</button>
-
+	</div>
 		<NationalModal className="nationalModal" index={nationalIndex} flag={nationalIsClicked} type={"national"} />
-        <div className="index">{nationalIndex}/{datastructure["national"].length}</div>
+        {/* <div className="index">{nationalIndex}/{datastructure["national"].length}</div> */}
 
-		<button className="backward" onClick = {handleInternationalBackwardClick}>戻る</button>
+	<div className="flex">
+		<button className="backward" onClick = {handleInternationalBackwardClick}>↩️</button>
         <button className="button" onClick={() => {handleInternationalClick();}}>international motion</button>
         <button className="copy" onClick={() => copy(copyJson[internationalIndex + datastructure["national"].length - 1])}>Copy</button>
-
+	</div>
 		<InternationalModal className="internationalModal" index={internationalIndex} flag={internationalIsClicked} type={"international"} />
-        <div className="index">{internationalIndex}/{datastructure["international"].length}</div>
+        {/* <div className="index">{internationalIndex}/{datastructure["international"].length}</div> */}
+
+
+		<div className="parent-input-button">
+			<input className="searchInput" type="text" onChange = {(e) => {setText(e.target.value)}} value={text} />
+			<button className="search" onClick={ handleClick } disabled={ isWaiting }>search</button>
+		</div>
+		<div className="searchName">{ text }</div>
+		<SearchModal className="searchModal" isClicked={isClicked} ranks={ranks}  />
+		<div>{ isClicked ? <input className="length" type="text" placeholder="10" onChange={e => setL(Number(e.target.value))} value={l} /> : <></>} </div>
+
+
 
 
 	<p className="explain">motion search engine created by utds member by using sentence bert embedding</p>
