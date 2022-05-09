@@ -236,9 +236,7 @@ function App({}: AppProps) {
 		</div>
 		<div className="searchName">{ text }</div>
 		<SearchModal className="searchModal" isClicked={isClicked} ranks={ranks}  />
-		<div>{ isClicked ? <input className="length" type="text" placeholder="10" onChange={e => setL(Number(e.target.value))} value={l} /> : <></>} </div>
-
-
+		<div>{ isClicked && !isWaiting ? <input className="length" type="text" placeholder="10" onChange={e => setL(Number(e.target.value))} value={l} /> : <></>} </div>
 
 
 	<p className="explain">motion search engine created by utds member by using sentence bert embedding</p>
