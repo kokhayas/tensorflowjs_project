@@ -242,6 +242,8 @@ function App({}: AppProps) {
   return (
 	<div className="App">
 		<div className="picParent"><img src={pic} alt="picture"/></div>
+	<a href="http://resources.tokyodebate.org/debate-motion/motion/" className="explain">utds motion</a>
+<br></br>
 <br></br>
 		<div className="parent-input-button">
 			<input className="searchInput" type="text" onChange = {(e) => {setText(e.target.value);}} value={text} />
